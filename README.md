@@ -1,2 +1,2 @@
 # Automated-Data-Upload
-Automated Data Extraction and Upload to Google Sheets Using Google Projects API, SQL and Python
+Automated Data Extraction from Snowflake Warehouse and Upload to Google Sheets Using Google Projects API, SQL and Python
