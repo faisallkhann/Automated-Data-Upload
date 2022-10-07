@@ -7,6 +7,9 @@ Features -
 3. Both Data overwrite and Data Append function available.
 4. Automatic System Shutdown Feature Available after the (Late night) uploads. *wink wink*
 
+Working Screenshot- 
+![image](https://user-images.githubusercontent.com/73607831/194518820-587d808c-4758-47fc-8bfb-323279260085.png)
+
 Libraries Used-
 1. typing
 2. snowflake.connector
