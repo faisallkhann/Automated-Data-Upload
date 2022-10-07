@@ -6,6 +6,44 @@ import gspread_dataframe as gd
 import time
 import winsound
 import os
+from colorama import Fore, Back, Style
+
+Banner1 = print(Fore.RED + '''
+
+
+ █████╗ ██╗   ██╗████████╗ ██████╗ ██████╗  █████╗ ████████╗ █████╗     ██╗   ██╗██████╗ ██╗      ██████╗  █████╗ ██████╗ ███████╗██████╗ 
+██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██║   ██║██╔══██╗██║     ██╔═══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
+███████║██║   ██║   ██║   ██║   ██║██║  ██║███████║   ██║   ███████║    ██║   ██║██████╔╝██║     ██║   ██║███████║██║  ██║█████╗  ██████╔╝
+██╔══██║██║   ██║   ██║   ██║   ██║██║  ██║██╔══██║   ██║   ██╔══██║    ██║   ██║██╔═══╝ ██║     ██║   ██║██╔══██║██║  ██║██╔══╝  ██╔══██╗
+██║  ██║╚██████╔╝   ██║   ╚██████╔╝██████╔╝██║  ██║   ██║   ██║  ██║    ╚██████╔╝██║     ███████╗╚██████╔╝██║  ██║██████╔╝███████╗██║  ██║
+╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝ ╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝ v2.0
+Automated Shutdown Feature: OFF                                                                                   Developed by Faisal Khan              
+To Turn on Automated Shutdown feature, please look into the source code.
+''')
+
+Banner2 = print(Fore.RED + '''
+
+
+ █████╗ ██╗   ██╗████████╗ ██████╗ ██████╗  █████╗ ████████╗ █████╗     ██╗   ██╗██████╗ ██╗      ██████╗  █████╗ ██████╗ ███████╗██████╗ 
+██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██║   ██║██╔══██╗██║     ██╔═══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
+███████║██║   ██║   ██║   ██║   ██║██║  ██║███████║   ██║   ███████║    ██║   ██║██████╔╝██║     ██║   ██║███████║██║  ██║█████╗  ██████╔╝
+██╔══██║██║   ██║   ██║   ██║   ██║██║  ██║██╔══██║   ██║   ██╔══██║    ██║   ██║██╔═══╝ ██║     ██║   ██║██╔══██║██║  ██║██╔══╝  ██╔══██╗
+██║  ██║╚██████╔╝   ██║   ╚██████╔╝██████╔╝██║  ██║   ██║   ██║  ██║    ╚██████╔╝██║     ███████╗╚██████╔╝██║  ██║██████╔╝███████╗██║  ██║
+╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝ ╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝ v2.0
+Automated Shutdown Feature: ON                                                                                    Developed by Faisal Khan              
+To Turn off Automated Shutdown feature, please look into the source code.
+''')
+
+#--------------Settings------------------------
+hours=30 #<-----------Duration between two consecutive data upload cycle in minutes
+cycle=10 #<-----------number of times data upload cycle will run
+auto_shutdown = 1 #<--------------- True = 1 & False = 0
+#----------------------------------------------
+
+if(auto_shutdown==1):
+    Banner2
+elif(auto_shutdown==0):
+    Banner1
 
 userid=input("Please Enter Your Snowflake User ID: ")
 warehouse_name=input("Please Enter the Warehouse Name: ")
@@ -15,10 +53,8 @@ ctx = snowflake.connector.Connect(user=userid,warehouse=warehouse_name, account=
 cur = ctx.cursor()
 api = gspread.service_account(filename="api\\api.json") #<-----------location of the Google Service Account API
 
-hours=30 #<-----------Duration between two consecutive data upload cycle in minutes
 t=hours*60 
 a=0
-r=10 #<-----------number of times data upload cycle will run
 
 def error_sound():
     c = 0
@@ -87,7 +123,7 @@ def data_upload_append(): #<----------------This will Append the data into the G
         print("Error: Data Upload Append")
         time.sleep(4)
 
-while a<=r:
+while a<=cycle:
     data_upload_1()
     data_upload_2()
     data_upload_append()
@@ -96,4 +132,5 @@ while a<=r:
     countdown(int(t))
     print(f"Data Upload Cycle No.{a+1} in Progress. Please Wait.")
 
-#os.system("shutdown /s /t 10") #<-----comment out this last line if you want your system to shutdown automatically after all data upload cycle gets completed
+if(auto_shutdown==1):
+    os.system("shutdown /s /t 10")
