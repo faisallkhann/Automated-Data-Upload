@@ -5,3 +5,5 @@ Features -
 2. Error sound notification in case of any error in the Data Upload Process.
 3. Both Data overwrite and Data Append function available.
 4. Automatic System Shutdown Feature Available after the (Late night) uploads. *wink wink*
+
+![image](https://user-images.githubusercontent.com/73607831/194516782-e25e71cc-9f94-488f-a494-547dbf2aa11b.png)
