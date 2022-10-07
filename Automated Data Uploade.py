@@ -8,20 +8,14 @@ import winsound
 import os
 from colorama import Fore, Back, Style
 
-Banner1 = print(Fore.RED + '''
+#--------------Settings------------------------
+hours=30 #<-----------Duration between two consecutive data upload cycle in minutes
+cycle=10 #<-----------number of times data upload cycle will run
+auto_shutdown = 1 #<--------------- To Turn off the Automated Shutdown Feature please use 1/0 (ON = 1 & OFF = 0)
+#----------------------------------------------
 
-
- █████╗ ██╗   ██╗████████╗ ██████╗ ██████╗  █████╗ ████████╗ █████╗     ██╗   ██╗██████╗ ██╗      ██████╗  █████╗ ██████╗ ███████╗██████╗ 
-██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██║   ██║██╔══██╗██║     ██╔═══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
-███████║██║   ██║   ██║   ██║   ██║██║  ██║███████║   ██║   ███████║    ██║   ██║██████╔╝██║     ██║   ██║███████║██║  ██║█████╗  ██████╔╝
-██╔══██║██║   ██║   ██║   ██║   ██║██║  ██║██╔══██║   ██║   ██╔══██║    ██║   ██║██╔═══╝ ██║     ██║   ██║██╔══██║██║  ██║██╔══╝  ██╔══██╗
-██║  ██║╚██████╔╝   ██║   ╚██████╔╝██████╔╝██║  ██║   ██║   ██║  ██║    ╚██████╔╝██║     ███████╗╚██████╔╝██║  ██║██████╔╝███████╗██║  ██║
-╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝ ╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝ v2.0
-Automated Shutdown Feature: OFF                                                                                   Developed by Faisal Khan              
-To Turn on Automated Shutdown feature, please look into the source code.
-''')
-
-Banner2 = print(Fore.RED + '''
+if(auto_shutdown==1):
+    print(Fore.RED + '''
 
 
  █████╗ ██╗   ██╗████████╗ ██████╗ ██████╗  █████╗ ████████╗ █████╗     ██╗   ██╗██████╗ ██╗      ██████╗  █████╗ ██████╗ ███████╗██████╗ 
@@ -33,17 +27,19 @@ Banner2 = print(Fore.RED + '''
 Automated Shutdown Feature: ON                                                                                    Developed by Faisal Khan              
 To Turn off Automated Shutdown feature, please look into the source code.
 ''')
-
-#--------------Settings------------------------
-hours=30 #<-----------Duration between two consecutive data upload cycle in minutes
-cycle=10 #<-----------number of times data upload cycle will run
-auto_shutdown = 1 #<--------------- True = 1 & False = 0
-#----------------------------------------------
-
-if(auto_shutdown==1):
-    Banner2
 elif(auto_shutdown==0):
-    Banner1
+    print(Fore.RED + '''
+
+
+ █████╗ ██╗   ██╗████████╗ ██████╗ ██████╗  █████╗ ████████╗ █████╗     ██╗   ██╗██████╗ ██╗      ██████╗  █████╗ ██████╗ ███████╗██████╗ 
+██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗    ██║   ██║██╔══██╗██║     ██╔═══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
+███████║██║   ██║   ██║   ██║   ██║██║  ██║███████║   ██║   ███████║    ██║   ██║██████╔╝██║     ██║   ██║███████║██║  ██║█████╗  ██████╔╝
+██╔══██║██║   ██║   ██║   ██║   ██║██║  ██║██╔══██║   ██║   ██╔══██║    ██║   ██║██╔═══╝ ██║     ██║   ██║██╔══██║██║  ██║██╔══╝  ██╔══██╗
+██║  ██║╚██████╔╝   ██║   ╚██████╔╝██████╔╝██║  ██║   ██║   ██║  ██║    ╚██████╔╝██║     ███████╗╚██████╔╝██║  ██║██████╔╝███████╗██║  ██║
+╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝ ╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝ v2.0
+Automated Shutdown Feature: OFF                                                                                   Developed by Faisal Khan              
+To Turn on Automated Shutdown feature, please look into the source code.
+''')
 
 userid=input("Please Enter Your Snowflake User ID: ")
 warehouse_name=input("Please Enter the Warehouse Name: ")
